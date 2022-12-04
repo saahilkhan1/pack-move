@@ -1,0 +1,55 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form"><b>Manage Service</b>
+            <hr>
+        </h2>
+    </div>
+    <br>
+
+    <table id="example" class="table table-bordered font-weight-bold">
+        <thead class="thsize">
+            <th>S no.</th>
+            <th>Service Image</th>
+            <th>Title</th>
+            <th>Creation Date</th>
+            <th>Action</th>
+        </thead>
+        {% for i in service %}
+        <tbody class="thsize">
+            <td>{{forloop.counter}}</td>
+            <td>
+                <img src="{{i.image.url}}" width="80" height="50">
+            </td>
+            <td>{{i.title}}</td>
+            <td>{{i.creationdate}}</td>
+            <td>
+                <a href="{% url 'edit_service' i.id %}" class="btn btn-success" style="width: 80px;">Edit</a><br>
+                <a href="{% url 'delete_service' i.id %}" class="btn btn-danger mt-2" style="width: 80px;" onclick="return confirm('You Want To Delete {{i.title}}')">Delete</a>
+            </td>
+        </tbody>
+        {% endfor %}
+
+    </table>
+    <div class=" card-info ">
+        <p>By signing up you are agreeing to our <a href="# ">Terms and Conditions</a></p>
+    </div>
+</div>
+
+{% if error == "no " %}
+<script>
+    alert('Service have been added');
+    // window.location = ('{% url '
+    //     admin_base ' %}')
+</script>
+{% endif %} {% if error == "yes " %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script>
+{% endif %} {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form"><b>Add Service</b><hr></h2>
+    </div>
+
+    <form class="card-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input">
+            <input type="text" class="input-field" name="servicetitle" value="" required/>
+            <label class="input-label">Service Title :-</label>
+        </div>
+
+        
+        <div class="input">
+            <textarea class="input-field" name="description" value=""></textarea>
+            <label class="input-label">Discription :-</label>
+        </div>
+        <div class="input">
+            <input type="file" name="image" class="input-field" required/>
+            <label class="input-label">Image :-</label>
+        </div>
+        <div class="action">
+            <button class="action-button">Submit</button>
+        </div>
+    </form>
+    <div class="card-info">
+        <p>By signing up you are agreeing to our <a href="#">Terms and Conditions</a></p>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Service have been added');
+    window.location = ('{% url 'manage_service' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script> 
+{% endif %}
+{% endblock %}

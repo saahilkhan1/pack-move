@@ -1,0 +1,48 @@
+{% extends 'header.html' %} {% load static %} {% block body %}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'service' %}">Service</a></li>
+    </ol>
+</nav>
+
+<div class="container">
+    <h3 class="page-title text-center">Service</h3>
+    <p class="page-itle text-center text-danger mt-2 font-weight-bold">From Our Side</p>
+
+    <div class="row">
+        {% for i in service %} {% comment %}
+        <div class="card col-sm-6 p-2 mb-16">
+            <img src="{{i.image.url}}" class="card-img-full mt-12" alt="Avatar" style="width:100%">
+            <div class="container">
+                <h4 class="card-title text-center"><b>{{i.title}}</b></h4>
+                <p class="card-text text-justify py-3">{{i.description}}</p>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="cardb col-sm-4">
+            <img class="card-img-full mt-13" src="{{i.image.url}}" style="width:100%; height:240px; margin-top: 10px; margin-left: 0px;">
+            <h4 class="card-title text-left mt-4 " style="font-size: 24px; margin-top: 20px; text-transform: uppercase; color: blueviolet;"><b>{{i.title}}</b></h4>
+            <p class="card-text text-justify py-3" style="font-size: 18px; margin-top: 15px;">{{i.description}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <footer>
+    <p>Packers & Mover<br>
+        <a href="Packers&Mover.com">Packers&Mover.com</a></p>
+</footer> -->
+{% endblock %}

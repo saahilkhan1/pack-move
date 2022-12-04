@@ -1,0 +1,62 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<div class="row" style="margin-left: 13%;">
+    <div class="col-sm-3 p-2 m-7 mr-3">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="text-success" style="font-size: 22px;">Total Services</h4>&nbsp;
+                <h5 style="font-size: 22px;">{{totalservices}}</h5>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'manage_service' %}" style="font-size: 16px;">View Detils >></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 p-2 mr-3">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="text-success" style="font-size: 22px;">Unread Quaries</h4>&nbsp;
+                <h5 style="font-size: 22px;">{{totalunread}}</h5>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'unread_quaries' %}" style="font-size: 16px;">View Detils >></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 p-2 mr-2">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="text-success" style="font-size: 22px;">Read Quaries</h4>&nbsp;
+                <h5 style="font-size: 22px;">{{totalread}}</h5>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'read_quaries' %}" style="font-size: 16px;">View Detils >></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 p-2 mr-3">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="text-success" style="font-size: 22px;">New Booking</h4>&nbsp;
+                <h5 style="font-size: 22px;">{{newbooking}}</h5>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'new_booking' %}" style="font-size: 16px;">View Detils >></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 p-2">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="text-success" style="font-size: 22px;">Old Booking</h4>&nbsp;
+                <h5 style="font-size: 22px;">{{oldbooking}}</h5>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'old_booking' %}" style="font-size: 16px;">View Detils >></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

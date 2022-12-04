@@ -1,0 +1,69 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form" style="font-size: 19px;"><b>Search Booking</b>
+            <hr>
+        </h2>
+    </div>
+
+    <form class="card-form" method="POST">
+        {% csrf_token %}
+        <div class="input">
+            <input type="text" class="input-field" name="searchdata" placeholder="Enter Name & Contact"></span>
+            <label class="input-label" style="font-size: 20px;">Search via Name & Mobile No :-</label>
+        </div>
+        <br>
+        <div>
+            <button class="btn btn-success" style="font-size: 19px;">Submit</button>
+        </div>
+
+
+    </form>
+    <br>
+    <div class="card-form">
+        <h4 style="font-size: 20px;" align="center">
+            </i>Results of {{name}}</h4>
+        <table id="example" class="table table-bordered font-weight-bold">
+            <thead class="thsize">
+                <th>S no.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Action</th>
+            </thead>
+            {% for i in booking %}
+            <tbody class="thsize">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.mobile}}</td>
+
+                <td>
+                    <a href="{% url 'view_bookingdetail' i.id %}" class="btn btn-success font-weight-bold" style="width: 80px;">View Details</a>
+                    <a href="{% url 'deloldbooking' i.id %}" class="btn btn-danger font-weight-bold" style="width: 80px;" onclick="return confirm('You Want To Delete')">Delete Details</a>
+                </td>
+            </tbody>
+            {% empty %}
+            <tr>
+                <td align="center" style="font-size: 15px;">No Record Found</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+
+    <div class=" card-info ">
+        <p>By signing up you are agreeing to our <a href="# ">Terms and Conditions</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

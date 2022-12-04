@@ -1,0 +1,97 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form" style="font-size: 22px;"><b>View Booking Details</b>
+            <hr>
+        </h2>
+    </div>
+    <br>
+
+    <table class="table table-bordered font-weight-bold">
+        <tr align="center">
+            <td colspan="4" style="font-size: 22px;">Booking Details
+            </td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;">Name</th>
+            <td style="font-size: small;">{{booking.name}}</td>
+            <th style="font-size: medium;">Contact</th>
+            <td style="font-size: small;">{{booking.mobile}}</td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;">Email</th>
+            <td style="font-size: small;">{{booking.email}}</td>
+            <th style="font-size: medium;">Where do you want our service</th>
+            <td style="font-size: small;">{{booking.location}}</td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;">Where you want to shift</th>
+            <td style="font-size: small;">{{booking.shiftingloc}}</td>
+            <th style="font-size: medium;">Date of shifting</th>
+            <td style="font-size: small;">{{booking.shiftingdate}}</td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;" colspan="1">Brief item</th>
+            <td style="font-size: small;" colspan="3">{{booking.briefitem}}</td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;" colspan="1">Item</th>
+            <td style="font-size: small;" colspan="3">{{booking.item}}</td>
+        </tr>
+        <tr>
+            <th style="font-size: medium;">Request Date</th>
+            <td style="font-size: small;" colspan="3">{{booking.requestdate}}</td>
+
+        </tr>
+        {% if not booking.remark %}
+        <form method="POST">
+            {% csrf_token %}
+            <tr>
+                <th style="font-size: medium;">Admin Remark</th>
+                <td colspan="3"><textarea name="remark" class="form-control" required></textarea></td>
+            </tr>
+            <tr>
+                <th style="font-size: medium;">&nbsp;</th>
+                <td colspan="3"><button type="submit" class="btn btn-primary mb-1" style="font-size: medium;">Update &nbsp;<i class="fa fa-arrow-circle-right"></button></td>
+            </tr>
+
+        </form>
+        {% else %}
+        <tr>
+            <th style="font-size: medium;">Admin Remark</th>
+            <td style="font-size: small;">{{booking.remark}}</td>
+            <th style="font-size: medium;">Last Updation Date</th>
+            <td style="font-size: small;">{{booking.updationdate}}</td>
+        </tr>
+
+        {% endif %} {% comment %}
+        <tr>
+            <th style="font-size: medium;" colspan="1">remark</th>
+            <td style="font-size: small;" colspan="3">{{booking.remark}}</td>
+        </tr> {% endcomment %}
+
+
+    </table>
+    <div class=" card-info ">
+        <p>By signing up you are agreeing to our <a href="# ">Terms and Conditions</a></p>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Remark update successfully.. ');
+    window.location = ('{% url 'view_bookingdetail' booking.id %}')
+</script>
+{% endif %} 
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script>
+{% endif %} 
+{% endblock %}

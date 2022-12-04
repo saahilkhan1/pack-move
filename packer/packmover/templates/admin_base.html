@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packer & Mover</title>
+
+    <!-- all cdn -->
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'js/sidebar.js' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="{% static 'js/sidebar.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- data table links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src=" https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src=" https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <!-- data table end -->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
+
+</head>
+
+<body class="ttt">
+    <!-- vertical navbar start -->
+    <div class="bg-white vertical-nav" id="sidebar">
+        <div class="py-4 px-3 bg-light">
+            <h5>
+                <p class="font-weight-bold text-dark px-4 sidebar-title" id="p_m">
+
+                    <!-- <img src="{% static 'images/Mo.jpg' %}" style="width: 90%; height: 150%;" class="mr-3 rounded-circle img-thumbnail shadow-sm" alt="{{base_image}}"> -->
+                    <h3 class="ml-3 container font-weight-bold"> Packers & Mover
+                    </h3>
+                </p>
+            </h5>
+
+            <!-- for images -->
+            <div class="media d-flex align-items-center">
+                <img src="{% static 'images/house.jpg' %}" width="80" height="80" class="mr-3 rounded-circle img-thumbnail shadow-sm" alt="">
+                <div class="media-body">
+                    <h4 class="mt-3"> Admin</h4>
+                    <p class="text-dark font-weight-bold"> {{request.user.email}}</p>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <ul class="ul nav flex-column bg-white">
+            <li class="nav-item">
+                <a href="{% url 'addmin' %}" class="nav-link text-dark bg-light">
+                    <i class="fa fa-tachometer fa-fw mr-3 text-primary"></i>Dashboard</a>
+            </li>
+            <li class="dropdown">
+                <a href="" class="nav-link text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+                    <i class="fa fa-handshake-o fa-fw mr-3 text-primary"></i>Service</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'add_service' %}"><i class="fa fa-plus fa-fw mr-4" aria-hidden="true"></i>Add Service</a>
+                    <a href="{% url 'manage_service' %}"><i class="fa fa-adjust fa-fw mr-4" aria-hidden="true"></i>Manage Service</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="" class="nav-link text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+                    <i class="fa fa-ravelry fa-fw mr-3 text-primary "></i>Booking</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'new_booking' %}"><i class="fa fa-arrow-right fa-fw mr-4" aria-hidden="true"></i> New Booking</a>
+                    <a href="{% url 'old_booking' %}"><i class="fa fa-arrow-right fa-fw mr-4" aria-hidden="true"></i> Old Booking</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="" class="nav-link text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+                    <i class="fa fa-quora fa-fw mr-3 text-primary"></i>Quaries</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'read_quaries' %}"><i class="fa fa-envelope-open fa-fw mr-4" aria-hidden="true"></i>Read Quaries</a>
+                    <a href="{% url 'unread_quaries' %}"><i class="fa fa-envelope fa-fw mr-4" aria-hidden="true"></i>Unread Quaries</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'search' %}" class="nav-link text-dark bg-light">
+                    <i class="fa fa-search fa-fw mr-3 text-primary"></i>Search</a>
+            </li>
+            <li class="dropdown">
+                <a href="" class="nav-link text-dark bg-light" id="navbardrop" data-toggle="dropdown">
+                    <i class="fa fa-indent fa-fw mr-3 text-primary"></i>Reports</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'bookbwdate' %}"><i class="fa fa-envelope-open fa-fw mr-4" aria-hidden="true"></i>Booking b/w Dates</a>
+                    <a href="{% url 'quariesbwdate' %}"><i class="fa fa-envelope fa-fw mr-4" aria-hidden="true"></i>Unread b/w Dates</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'changepassword' %}" class="nav-link text-dark bg-light">
+                    <i class="fa fa-key fa-fw mr-3 text-primary"></i>Change Password</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'logout' %}" class="nav-link text-dark bg-light">
+                    <i class="fa fa fa-sign-out fa-fw mr-3 text-primary"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!-- vertical navbar end  -->
+
+
+    <!-- content placeholder start -->
+    <a href="{% url 'logout' %}" title="logout" class="text-white float-right" id="log">Logout</a>
+    <a href="{% url 'index' %}" title="logout" class="text-white float-right" id="log">Home</a>
+
+    <div class="page-content p-5" id="content">
+        <button class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4" id="sidecollaps" type="button">
+            <i class="fa fa-bars mb-1"></i>
+            <small class="text-uppercase font-weight-bold" id="toggle">Toggle</small>
+        </button>
+    </div>
+
+    {% block main %} {% endblock %}
+
+
+    <!-- content placeholder end -->
+</body>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']
+        });
+    });
+</script>
+
+</html>

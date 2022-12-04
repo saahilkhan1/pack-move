@@ -1,0 +1,53 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form"><b>Edit Service Details</b></h2>
+    </div>
+
+    <form class="card-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input">
+            <input type="text" class="input-field" name="servicetitle" value="{{service.title}}" required/>
+            <label class="input-label">Service Title :-</label>
+        </div>
+        <div class="input">
+            <textarea class="input-field" name="description" value="">{{service.description}}</textarea>
+            <label class="input-label">Discription :-</label>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="input">
+                <img src="{{service.image.url}}" width="250" height="150">
+            </div>
+        </div>
+        <div class="input">
+            <input type="file" name="image" class="input-field">
+            <label class="input-label">Image :-</label>
+        </div>
+
+        <div class="action">
+            <button class="action-button">Get started</button>
+        </div>
+    </form>
+    <div class="card-info">
+        <p>By signing up you are agreeing to our <a href="#">Terms and Conditions</a></p>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Service details have been Updated');
+    window.location = ('{% url 'edit_service' service.id %}')
+</script>
+{% endif %} {% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script>
+{% endif %} {% endblock %}

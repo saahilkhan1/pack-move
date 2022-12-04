@@ -1,0 +1,49 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block body %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+{% comment %} <body style="background-image : url({% static 'images/Movers-and-packers-e1465470929468.jpg' %})"> {% endcomment %}
+
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" method="POST">
+				{% csrf_token %}
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" name="name"placeholder="Use user name">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" name="password" placeholder="Password">
+				</div>
+				<button class="button login__submit">
+					<span class="button__text">Log In Now</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+			</form>
+			
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape "></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Login Successfully');
+    window.location = ('{% url 'addmin' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script> 
+{% endif %}
+{% endblock %}

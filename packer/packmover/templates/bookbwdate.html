@@ -1,0 +1,36 @@
+{% extends 'admin_base.html' %} {% load static %} {% block main %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<!-- code here -->
+<div class="card">
+    <div>
+        <h2 class="card-form"><b>Date via reports</b><hr></h2>
+    </div>
+
+    <form class="card-form" method="POST" >
+        {% csrf_token %}
+        <div class="input">
+            <input type="date" class="input-field" name="fromdate"  required/>
+            <label class="input-label">From date:-</label>
+        </div>
+        <div class="input">
+            <input type="date" class="input-field" name="todate"  required/>
+            <label class="input-label">To date:-</label>
+        </div>
+
+        
+        
+        <div class="action">
+            <button class="action-button">Submit</button>
+        </div>
+    </form>
+    <div class="card-info">
+        <p>By signing up you are agreeing to our <a href="#">Terms and Conditions</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

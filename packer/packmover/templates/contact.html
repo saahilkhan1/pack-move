@@ -1,0 +1,99 @@
+{% extends 'header.html' %} {% load static %} {% block body %}
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'contact' %}">Contact</a></li>
+    </ol>
+</nav>
+<br>
+<section>
+    <div class="container bg-info">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center py-3">Contact Us
+                    <hr>
+                </h1>
+                <div class="row " style="margin-bottom: 40px;">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row" style="padding: 20px;">
+                            <div class="col-lg-1 offset-1 col-md-2 col-sm-2 ">
+                                <span style="font-size: 30px; padding-top: 10px; "><i class="fa fa-map-marker-alt" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="col-lg-10 col-md-9 col-sm-9">
+                                <div style="margin: 10px;">
+                                    <h3 class="font-weight-light" style="margin: 1px;">Find Us At The Office</h3>
+                                    <p>#238 Active Building <br> 8 phase mohali <br> PUNJAB
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 20px;">
+                            <div class="col-lg-1 offset-1 col-md-2 col-sm-2 ">
+                                <span style="font-size: 30px; padding-top: 12px; "><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="col-lg-10 col-md-9 col-sm-9">
+                                <div style="margin: 10px;">
+                                    <h3 class="font-weight-light" style="margin: 1px;">Give Us a Ring</h3>
+                                    <p>Sahil Khan<br> +9190532261**<br> MOHALI(PUNJAB)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <label>Enter your name :- </label>
+                                    <input type="text" name="fullname" class="form-control" id="" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <label>Contact :-</label>
+                                    <input type="text" name="contact" class="form-control" id="" placeholder="Contact number">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <label>Enter your email</label>
+                                    <input type="email" name="email" class="form-control" id="" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <label>Enter Subject :-</label>
+                                    <input type="text" name="subject" class="form-control" id="" placeholder="Enter Subject">
+                                </div>
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                    <label>Enter your message :-</label>
+                                    <textarea name="message" class="form-control" id="" placeholder="Enter your message"></textarea>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <input type="submit" value="Send" class="form-control btn btn-primary">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                    <input type="reset" value="Clear" class="form-control btn btn-primary">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+    alert('Your message has been sent . we will contact you soon');
+    {% comment %} window.location = ('{% url 'contact' %}') {% endcomment %}
+</script>
+{% endif %} {% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...')
+</script>
+{% endif %} {% endblock %}
